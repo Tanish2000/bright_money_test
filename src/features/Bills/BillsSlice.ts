@@ -29,7 +29,7 @@ const billSlice = createSlice({
       state.bills.push({
         id: uuid(),
         description: action.payload.desc,
-        date: action.payload.date.split("-").reverse().join("-"),
+        date: action.payload.date,
         amount: action.payload.amount,
         category: action.payload.category,
         isHighlight: false,
@@ -43,7 +43,7 @@ const billSlice = createSlice({
           bill.description = desc;
           bill.amount = amount;
           bill.category = category;
-          bill.date = date.split("-").reverse().join("-");
+          bill.date = date;
         }
       })
     },
