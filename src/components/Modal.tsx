@@ -26,7 +26,6 @@ type ModalProps = {
 
 const ModalComponent = ({ isOpen, onClose, id, setId }: ModalProps) => {
   const { categories, bills } = useAppSelector((state) => state.bills);
-  const data = bills.filter((bill) => bill.id === id);
   const dispatch = useAppDispatch();
   const [desc ,setDesc] = useState('');
   const [category, setCategory] = useState('');
@@ -50,6 +49,7 @@ const ModalComponent = ({ isOpen, onClose, id, setId }: ModalProps) => {
   }
 
   useEffect(()=> {
+  const data = bills.filter((bill) => bill.id === id);
     if(data.length && id === data[0].id)
     {
         setDesc(data[0].description);
@@ -64,7 +64,7 @@ const ModalComponent = ({ isOpen, onClose, id, setId }: ModalProps) => {
         setAmount('');
         setDate('');
     }
-  }, [id])
+  }, [id,bills])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
